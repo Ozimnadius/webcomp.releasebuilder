@@ -1,0 +1,11 @@
+{
+  "name": "webcomp-releasebuilder-assets",
+  "private": true,
+  "scripts": {
+    "sass": "sass install/css/style.scss install/css/style.css --no-source-map",
+    "sass:watch": "sass --watch install/css/style.scss install/css/style.css --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

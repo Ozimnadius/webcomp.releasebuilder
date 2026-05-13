@@ -1,0 +1,399 @@
+// ============================================================
+// ReleaseBuilder BEM Stylesheet
+// Replicates Bootstrap 5 visuals, scoped to .rb block
+// Uses !important where Bitrix's .adm-workarea overrides apply
+// ============================================================
+
+// ---- Variables ----
+$color-bg:           #f1f3f5;
+$color-white:        #fff;
+$color-border:       #dee2e6;
+$color-text:         #212529;
+$color-text-muted:   #6c757d;
+$color-text-dark:    #343a40;
+
+$ctrl-height:        38px;
+$ctrl-padding-y:     6px;
+$ctrl-padding-x:     12px;
+$ctrl-font-size:     1rem;
+$ctrl-line-height:   1.5;
+$ctrl-border-radius: 6px;
+$ctrl-border:        1px solid $color-border;
+
+$btn-padding-y:      6px;
+$btn-padding-x:      12px;
+$btn-font-size:      1rem;
+$btn-border-radius:  6px;
+
+$btn-primary-bg:     #0d6efd;
+$btn-primary-hover:  #0b5ed7;
+$btn-success-bg:     #198754;
+$btn-success-hover:  #157347;
+
+$gap:                16px;
+$card-radius:        8px;
+
+// ---- Reset / base ----
+// Utility: used by JS to hide/show elements (matches Bootstrap .d-none)
+.d-none {
+    display: none !important;
+}
+
+// ---- Block: rb ----
+.rb {
+
+    // --- Page wrapper ---
+    &__page {
+        background: $color-bg;
+        min-height: 100%;
+    }
+
+    // --- Top-bar (sticky header inside page) ---
+    &__topbar {
+        background: $color-white;
+        border-bottom: 1px solid $color-border;
+        padding: 10px 24px;
+        display: flex;
+        align-items: center;
+        gap: $gap;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        &-back {
+            color: $color-text-muted;
+            text-decoration: none;
+            font-size: 13px;
+            white-space: nowrap;
+
+            &:hover {
+                color: $color-text-dark;
+            }
+        }
+
+        &-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: $color-text-dark;
+        }
+    }
+
+    // --- Container ---
+    &__container {
+        width: 100%;
+        padding: 16px 0 0;
+        box-sizing: border-box;
+    }
+
+    // --- Card ---
+    &__card {
+        background: $color-white;
+        border: 1px solid $color-border;
+        border-radius: $card-radius;
+        margin-bottom: 24px;
+
+        &-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid $color-border;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: $color-text;
+        }
+
+        &-body {
+            padding: 16px;
+
+            &--flush {
+                padding: 0;
+            }
+        }
+    }
+
+    // --- Grid row ---
+    &__row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: $gap;
+        align-items: start;
+    }
+
+    // Column modifiers: rb__col--N spans N of 12 columns
+    &__col {
+        grid-column: span 12;
+
+        &--2  { grid-column: span 2; }
+        &--3  { grid-column: span 3; }
+        &--4  { grid-column: span 4; }
+        &--6  { grid-column: span 6; }
+        &--8  { grid-column: span 8; }
+        &--12 { grid-column: span 12; }
+
+        // Вертикальное центрирование внутри строки
+        &--middle { align-self: center; }
+    }
+
+    // --- Form label ---
+    &__label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        color: $color-text !important;
+
+        &-hint {
+            color: $color-text-muted;
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+    }
+
+    // --- Form controls (input / select / textarea) ---
+    // !important required to override .adm-workarea input[type="text"] specificity (0,2,1)
+    &__input,
+    &__select,
+    &__textarea {
+        display: block !important;
+        width: 100% !important;
+        height: $ctrl-height !important;
+        padding: $ctrl-padding-y $ctrl-padding-x !important;
+        font-size: $ctrl-font-size !important;
+        font-family: inherit !important;
+        line-height: $ctrl-line-height !important;
+        color: $color-text !important;
+        background: $color-white !important;
+        border: $ctrl-border !important;
+        border-radius: $ctrl-border-radius !important;
+        box-sizing: border-box !important;
+        box-shadow: none !important;
+        outline: none !important;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+        &:focus {
+            border-color: #86b7fe !important;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25) !important;
+        }
+
+        &:disabled,
+        &[disabled] {
+            background: #e9ecef !important;
+            color: $color-text-muted !important;
+            cursor: not-allowed;
+        }
+
+        &[readonly] {
+            background: #e9ecef !important;
+        }
+    }
+
+    &__textarea {
+        height: auto !important;
+        min-height: 100px;
+        resize: vertical;
+
+        &--mono {
+            font-family: monospace !important;
+        }
+    }
+
+    // --- Radio group ---
+    &__radio-group {
+        display: flex;
+        gap: $gap;
+        margin-top: 8px;
+    }
+
+    &__radio {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+
+        &-input {
+            width: 16px !important;
+            height: 16px !important;
+            margin: 0 !important;
+            cursor: pointer;
+        }
+
+        &-label {
+            margin: 0;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+    }
+
+    // --- Actions row (buttons) ---
+    &__actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-top: 16px;
+        flex-wrap: wrap;
+    }
+
+    // --- Buttons ---
+    &__btn {
+        display: inline-block;
+        padding: $btn-padding-y $btn-padding-x;
+        font-size: $btn-font-size;
+        font-weight: 400;
+        line-height: 1.5;
+        color: $color-white;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: $btn-border-radius;
+        background-color: transparent;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        white-space: nowrap;
+        user-select: none;
+
+        &:disabled,
+        &[disabled] {
+            opacity: 0.65;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        &--primary {
+            background-color: $btn-primary-bg;
+            border-color: $btn-primary-bg;
+
+            &:hover:not(:disabled) {
+                background-color: $btn-primary-hover;
+                border-color: $btn-primary-hover;
+            }
+        }
+
+        &--success {
+            background-color: $btn-success-bg;
+            border-color: $btn-success-bg;
+
+            &:hover:not(:disabled) {
+                background-color: $btn-success-hover;
+                border-color: $btn-success-hover;
+            }
+        }
+
+        &--outline {
+            color: $color-text-muted;
+            border-color: $color-border;
+            background: $color-white;
+
+            &:hover:not(:disabled) {
+                background: #f8f9fa;
+                color: $color-text-dark;
+            }
+        }
+
+        &--link {
+            color: $btn-primary-bg;
+            border-color: $btn-primary-bg;
+            background: $color-white;
+
+            &:hover:not(:disabled) {
+                background: #e8f0fe;
+            }
+        }
+    }
+
+    // --- Inline status text ---
+    &__status {
+        font-size: 0.875rem;
+
+        &--success {
+            color: #198754;
+        }
+
+        &--error {
+            color: #dc3545;
+        }
+    }
+
+    // --- Alert ---
+    &__alert {
+        padding: 12px 16px;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        margin-top: 12px;
+
+        &--danger {
+            background: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #842029;
+        }
+    }
+
+    // --- Files table card ---
+    &__files-card {
+        background: $color-white;
+        border: 1px solid $color-border;
+        border-radius: $card-radius;
+        margin-bottom: 24px;
+        overflow: hidden;
+    }
+
+    // --- Table ---
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.875rem;
+
+        th, td {
+            padding: 6px 10px;
+            border-bottom: 1px solid $color-border;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            font-weight: 500;
+            background: #f8f9fa;
+            font-size: 0.825rem;
+            color: $color-text-muted;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        &-check {
+            width: 40px;
+        }
+
+        &-num {
+            width: 50px;
+            color: $color-text-muted;
+        }
+
+        code {
+            font-family: monospace;
+            font-size: 0.82rem;
+            color: #c7254e;
+            background: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    }
+
+    // --- Checkbox (master "select all") ---
+    &__checkbox {
+        width: 16px !important;
+        height: 16px !important;
+        cursor: pointer;
+    }
+
+    // --- Download section ---
+    &__download {
+        margin-bottom: 24px;
+    }
+
+    // --- Quill editor wrapper ---
+    &__editor {
+        min-height: 150px;
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "webcomp/releasebuilder",
+    "autoload": {
+        "psr-4": {
+            "Webcomp\\ReleaseBuilder\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webcomp\\ReleaseBuilder\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11"
+    }
+}
